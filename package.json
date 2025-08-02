@@ -1,0 +1,43 @@
+{
+  "name": "mcpserver",
+  "version": "1.0.0",
+  "description": "A beginner project in creating an MCP server",
+  "main": "src/server.js",
+  "scripts": {
+    "server:build": "tsc",
+    "server:build:watch": "tsc --watch",
+    "server:dev": "tsx src/server.ts",
+    "server:inspect": "set DANGEROUSLY_OMIT_AUTH=true && npx @modelcontextprotocol/inspector npm run server:dev"
+  },
+  "keywords": [
+    "Typescript",
+    "MCP",
+    "server",
+    "MCP",
+    "Client",
+    "MCP",
+    "Server"
+  ],
+  "author": {
+    "name": "Guhaprasaanth Nandagopal"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guhandelta/JS-MCP-Server/issues"
+  },
+  "homepage": "https://github.com/guhandelta/JS-MCP-Server#readme",
+  "dependencies": {
+    "@types/node": "^24.0.3",
+    "tsx": "4.20.3",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/inspector": "^0.16.2",
+    "@modelcontextprotocol/sdk": "^1.13.0"
+  },
+  "files": [
+    "./bin/*",
+    "./lib/*"
+  ],
+  "typings": "./lib/index.d.ts"
+}
