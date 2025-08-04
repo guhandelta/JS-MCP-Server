@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "phone": "555-0123"
+  },
+  {
+    "id": "2",
+    "name": "Jane Smith",
+    "email": "jane.smith@example.com",
+    "phone": "555-0456"
+  },
+  {
+    "id": "3",
+    "name": "Bob Johnson",
+    "email": "bob.johnson@example.com",
+    "phone": "555-0789"
+  },
+  {
+    "id": "4",
+    "name": "Alice Brown",
+    "email": "alice.brown@example.com",
+    "phone": "555-0321"
+  },
+  {
+    "id": "5",
+    "name": "Charlie White",
+    "email": "charlie.white@example.com",
+    "phone": "555-0567"
+  },
+  {
+    "id": 6,
+    "name": "yaro",
+    "email": "yaro@yengayo.com",
+    "address": "0000 yedho theru,\nyedho ooru,\nyedho maanilam,\nyedhi naadu",
+    "phone": "6482562981"
+  },
+  {
+    "id": 7,
+    "name": "yaro",
+    "email": "yaro@yengayo.com",
+    "address": "0000 yedho theru,\nyedho ooru,\nyedho maanilam,\nyedhi naadu",
+    "phone": "6482562981"
+  }
+]

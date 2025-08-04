@@ -1,0 +1,16 @@
+{
+	"servers": {
+		"my-first-mcp-server": {
+			"type": "stdio",
+			"command": "node",
+			"args": ["dist/server.js"],
+			"cwd": "${workspaceFolder}",
+			"dev":{
+				"watch": "dist/**/*.ts",
+				"debug": {
+					"type": "node"
+				}
+			}
+		}
+	},
+}
