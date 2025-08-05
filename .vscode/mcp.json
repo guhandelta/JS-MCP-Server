@@ -1,12 +1,12 @@
 {
 	"servers": {
-		"my-first-mcp-server": {
+		"test-mcp-server": {
 			"type": "stdio",
 			"command": "node",
 			"args": ["dist/server.js"],
 			"cwd": "${workspaceFolder}",
 			"dev":{
-				"watch": "dist/**/*.ts",
+				"watch": "dist/**/*.js",
 				"debug": {
 					"type": "node"
 				}

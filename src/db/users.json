@@ -42,5 +42,33 @@
     "email": "yaro@yengayo.com",
     "address": "0000 yedho theru,\nyedho ooru,\nyedho maanilam,\nyedhi naadu",
     "phone": "6482562981"
+  },
+  {
+    "id": 8,
+    "name": "Babu",
+    "email": "babu@vysystems.com",
+    "address": "100, Vivekanandhar St,\nDubai MainRd,\nDubai ",
+    "phone": "9873442341"
+  },
+  {
+    "id": 9,
+    "name": "katie",
+    "email": "katie@tradersjoes.com",
+    "address": "123 Main Street, charlotte-28262",
+    "phone": "+1-555-123-4567"
+  },
+  {
+    "id": 10,
+    "name": "Sudipa D",
+    "email": "sudipa@techcorp.com",
+    "address": "456 Oak Avenue, San Francisco, CA 94102",
+    "phone": "+1-415-555-9876"
+  },
+  {
+    "id": 11,
+    "name": "Akanksha",
+    "email": "hr@celo.com",
+    "address": "234 plank way",
+    "phone": "234-567-9865"
   }
 ]
