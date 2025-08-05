@@ -2,7 +2,7 @@ import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { confirm, input, select } from "@inquirer/prompts";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
-import { Prompt, PromptMessage, Tool } from "@modelcontextprotocol/sdk/types.js";
+import { CreateMessageRequestSchema, Prompt, PromptMessage, Tool } from "@modelcontextprotocol/sdk/types.js";
 import { generateText, jsonSchema, ToolSet } from "ai";
 import "dotenv/config"
 
@@ -36,6 +36,25 @@ async function main() {
     mcp.listResources(),
     mcp.listResourceTemplates()
   ])
+
+  // Sampling
+  mcp.setRequestHandler(CreateMessageRequestSchema, async request => {
+     const texts: string[] = [];
+     for (const message of request.params.messages){
+        const text = await handleServerMessagePrompt(message);
+        if(text !== null) texts.push(text);
+     }
+
+     return{
+        role: "user",
+        model: "gemini-2.0-flash",
+        stopReason: 'endTurn',
+        content: {
+            type: "text",
+            text: texts.join("\n"),
+        }
+     }
+  })
 
   console.log("You are conneced!!");
 
