@@ -96,7 +96,7 @@ server.prompt(
   ({ name }) => {
     return{
       messages: [
-        {x
+        {
           role: 'user',
           content: {
             type: "text",
