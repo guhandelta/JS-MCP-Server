@@ -7,6 +7,7 @@
     "server:build": "tsc",
     "server:build:watch": "tsc --watch",
     "server:dev": "tsx src/server.ts",
+    "client:dev": "tsx src/client.ts",
     "server:inspect": "set DANGEROUSLY_OMIT_AUTH=true && npx @modelcontextprotocol/inspector npm run server:dev"
   },
   "keywords": [
@@ -30,10 +31,16 @@
     "module": "CommonJS",
     "target": "ES6"
   },
-  "exclude": ["node_modules"],
+  "exclude": [
+    "node_modules"
+  ],
   "homepage": "https://github.com/guhandelta/JS-MCP-Server#readme",
   "dependencies": {
+    "@ai-sdk/google": "^2.0.1",
+    "@inquirer/prompts": "^7.8.0",
     "@modelcontextprotocol/sdk": "^1.13.0",
+    "ai": "^5.0.2",
+    "dotenv": "^17.2.1",
     "zod": "^3.25.76"
   },
   "devDependencies": {
@@ -47,4 +54,3 @@
     "./lib/*"
   ]
 }
-

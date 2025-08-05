@@ -1,5 +1,6 @@
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { CreateMessageResultSchema } from "@modelcontextprotocol/sdk/types.js";
 import fs from "node:fs/promises";
 import { z } from "zod";
 
@@ -87,6 +88,94 @@ server.resource(
   }
 );
 
+server.tool("create-user", "Create a new user in the DB", {
+  name: z.string(),
+  email: z.string(),
+  address: z.string(),
+  phone: z.string()
+},{
+  title: "Create User",
+  readOnlyHint: false,
+  destructiveHint: false,
+  idempotentHint: false, 
+  openWorldHint: true
+}, async (params) => { 
+  try {
+    const id = await createUser(params)
+    return{
+      content: [
+        { type: 'text', text: `User ${id} created successfully` }
+      ]
+    }
+  } catch {
+    return{
+      content: [
+        { type: 'text', text: 'Failed to create the user' }
+      ]
+    }
+  }
+});
+
+// Tool for Sampling 
+server.tool(
+  "create-random-user",
+  "Create a Random User with Fake data",
+  {
+    title: "Create Random User",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: false, 
+    openWorldHint: true
+  },
+  async () => {
+    // Instead of writing a separate code to generate random user info, the AI can be utilized here, by using Sampling over here to tell the AI `I have prompt that I want the AI to run and send back the information`
+
+    // Request allows to send a request directly to the client
+    const res = await server.server.request({
+      // "elicitation/create" => allows to ask the user for additional info
+      method: "sampling/createMessage", // This allows to run a prompt on the AI
+      params: {
+        messages: [{
+          role: "user",
+          content: {
+            type: "text",
+            text: "Generate a fake user with the name Guhan. The user should have a realistic email, address, and a phone number. Return this data as a JSON Object with no other text or formatter so it can be used in JSON.parse."
+          }
+        }],
+        maxTokens: 1024
+      }
+
+    }, CreateMessageResultSchema);
+
+    if(res.content.type !== "text"){
+        return{
+          content: [
+            { type: 'text', text: 'Failed to generate a user' }
+          ]
+        }
+      }
+      
+      try {
+        // Remove the Markdown formatting if the AI sends the response as Markdown
+        const fakeUser = JSON.parse(res.content.text.trim().replace(/^```json/,"").replace(/```$/, ""));
+
+        const id = await createUser(fakeUser);
+
+        return{
+          content: [
+            { type: 'text', text: `User ${id} generated successfully!!` }
+          ]
+        }
+      } catch (error) {
+        return{
+          content: [
+            { type: 'text', text: 'Failed to generate the user data' }
+          ]
+        }
+      }
+  }
+);
+
 server.prompt(
   "generate-fake-user",
   "Generate fake user based on a given name",
@@ -126,33 +215,6 @@ async function  createUser(user:{
   return id;
 }
 
-server.tool("create-user", "Create a new user in the DB", {
-  name: z.string(),
-  email: z.string(),
-  address: z.string(),
-  phone: z.string()
-},{
-  title: "Create User",
-  readOnlyHint: false,
-  destructiveHint: false,
-  idempotentHint: false, 
-  openWorldHint: true
-}, async (params) => { 
-  try {
-    const id = await createUser(params)
-    return{
-      content: [
-        { type: 'text', text: `User ${id} created successfully` }
-      ]
-    }
-  } catch {
-    return{
-      content: [
-        { type: 'text', text: 'Failed to create the user' }
-      ]
-    }
-  }
-});
 
 async function  main(){
 
