@@ -72,3 +72,11 @@
     "phone": "234-567-9865"
   }
 ]
+  ,
+  {
+    "id": 12,
+    "name": "Guhan",
+    "email": "guhan.ramanathan@example.com",
+    "address": "42, Lake View Road, Chennai, Tamil Nadu, India, 600034",
+    "phone": "+91-98400-12345"
+  }
